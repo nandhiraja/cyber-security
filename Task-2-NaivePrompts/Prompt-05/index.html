@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display User Input</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output-box {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9ecef;
+            border-left: 5px solid #007BFF;
+            min-height: 20px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Show User Input</h2>
+    
+    <!-- Input field for the user -->
+    <input type="text" id="userInput" placeholder="Type something here..." />
+    
+    <!-- Button to trigger the action -->
+    <button id="submitBtn">Display Text</button>
+    
+    <!-- Where the input will be displayed -->
+    <div class="output-box">
+        <strong>You typed:</strong> <span id="displayArea">Nothing yet!</span>
+    </div>
+</div>
+
+<script>
+    // 1. Grab reference to the HTML elements
+    const inputField = document.getElementById('userInput');
+    const submitButton = document.getElementById('submitBtn');
+    const displayArea = document.getElementById('displayArea');
+
+    // 2. Define the function to display the input
+    function updateDisplay() {
+        const textValue = inputField.value;
+        
+        if (textValue !== "") {
+            displayArea.innerHTML = textValue; 
+        } else {
+            displayArea.innerHTML = "Please type something first!";
+        }
+    }
+
+    // 3. Attach event listener to the button click
+    submitButton.addEventListener('click', updateDisplay);
+
+    // Optional: Allow pressing 'Enter' inside the input field to submit
+    inputField.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            updateDisplay();
+        }
+    });
+</script>
+
+</body>
+</html>
